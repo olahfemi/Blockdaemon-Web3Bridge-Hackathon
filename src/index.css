@@ -17,5 +17,10 @@ code {
 }
 
 
-
+.hero_image {
+  background-color: #C3EBFB;
+  border-radius: 50%;
+  height: 400px;
+  width: 400px;
+}
 

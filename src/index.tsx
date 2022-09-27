@@ -6,6 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import "aos/dist/aos.css";
 import { WagmiConfig, createClient, chain } from "wagmi";
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
+import Modal from "react-modal";
+
+Modal.setAppElement('#root');
 
 const alchemyId = process.env.ALCHEMY_ID;
 

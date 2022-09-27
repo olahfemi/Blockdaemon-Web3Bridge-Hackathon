@@ -17,7 +17,8 @@ module.exports = {
       dark_deep: "#111623",
       dark_variant: '#252A39',
       white: '#ffffff',
-      white_variant: "#9fa7bb"
+      white_variant: "#9fa7bb",
+      green: "#6cd85cf2"
     },
     extend: {
       boxShadow: {

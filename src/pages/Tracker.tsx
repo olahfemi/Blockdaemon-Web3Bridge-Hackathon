@@ -11,6 +11,7 @@ const Tracker = () => {
   const userWalletAddress: string | undefined = address as string | undefined;
 
   const [copy, setCopy] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [userAddress, setUserAddress] = useState(address);
 
@@ -30,8 +31,10 @@ const Tracker = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
+    setLoading(true);
+
     const { data } = await axios.get(
-      `https://svc.blockdaemon.com/universal/v1/${protocol}/mainnet/account/${userAddress}`,
+      `https://svc.blockdaemon.com/universal/v1/${protocol}/goerli/account/${userAddress}`,
       config
     );
     setTracker(data);
@@ -46,12 +49,11 @@ const Tracker = () => {
         `https://svc.blockdaemon.com/universal/v1/${protocol}/mainnet/tx/estimate_fee`,
         config
       );
-      console.log(res?.data?.estimated_fees);
 
       setGasFee(res?.data?.estimated_fees);
     }
 
-    console.log({ data });
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -72,8 +74,8 @@ const Tracker = () => {
       </div>
 
       {address && (
-        <div className="mt-8 grid grid-cols-1 xl:grid-cols-2 gap-8">
-          <div className="h-72 bg-dark_deep p-6 rounded-xl border-2 border-white_variant">
+        <div className="mt-8 grid grid-cols-1 xl:grid-cols-2 gap-5">
+          <div className="h-48 bg-dark_deep p-6 rounded-xl border-2 border-white_variant">
             <h1 className="text-white_variant text-3xl font-medium">Wallet</h1>
 
             <div className="mt-6">
@@ -96,65 +98,74 @@ const Tracker = () => {
           </div>
 
           <div
-            className={`${
-              gasFee ? "h-80" : "h-72"
-            } bg-dark_deep p-6 rounded-xl border-2 border-white_variant`}
+            className={
+              "h-48 bg-dark_deep p-6 rounded-xl border-2 border-white_variant"
+            }
           >
             <h1 className="text-white_variant text-4xl font-medium">
               BALANCE: {Number(data?.formatted).toFixed(2)} {data?.symbol}
             </h1>
+          </div>
+        </div>
+      )}
 
-            {gasFee && (
-              <div className="mt-1">
-                <div className="text-white_variant">
-                  <h4 className=" text-xl font-medium">Fast</h4>
-                  <p className="">
-                    Max Priority Fee:{" "}
-                    <span className="font-medium">
-                      {gasFee?.fast?.max_priority_fee}
-                    </span>
-                  </p>
-                  <p className="">
-                    Max Total Fee:{" "}
-                    <span className="font-medium">
-                      {gasFee?.fast?.max_total_fee}
-                    </span>
-                  </p>
-                </div>
+      {gasFee && (
+        <div
+          className={
+            "h-72 w-[60%] mt-5 bg-dark_deep p-6 rounded-xl border-2 border-white_variant"
+          }
+        >
+          <h1 className="text-white_variant text-3xl font-medium mb-4">
+            Gas Fee Estimation
+          </h1>
+          <div className="mt-1 grid grid-cols-1 xl:grid-cols-2 gap-4">
+            <div className="text-white_variant">
+              <h4 className=" text-xl font-medium">Fast</h4>
+              <p className="">
+                Max Priority Fee:{" "}
+                <span className="font-medium">
+                  {gasFee?.fast?.max_priority_fee}
+                </span>
+              </p>
+              <p className="">
+                Max Total Fee:{" "}
+                <span className="font-medium">
+                  {gasFee?.fast?.max_total_fee}
+                </span>
+              </p>
+            </div>
 
-                <div className="text-white_variant mt-1">
-                  <h4 className=" text-xl font-medium">Medium</h4>
-                  <p className="">
-                    Max Priority Fee:{" "}
-                    <span className="font-medium">
-                      {gasFee?.medium?.max_priority_fee}
-                    </span>
-                  </p>
-                  <p className="">
-                    Max Total Fee:{" "}
-                    <span className="font-medium">
-                      {gasFee?.medium?.max_total_fee}
-                    </span>
-                  </p>
-                </div>
+            <div className="text-white_variant mt-1">
+              <h4 className=" text-xl font-medium">Medium</h4>
+              <p className="">
+                Max Priority Fee:{" "}
+                <span className="font-medium">
+                  {gasFee?.medium?.max_priority_fee}
+                </span>
+              </p>
+              <p className="">
+                Max Total Fee:{" "}
+                <span className="font-medium">
+                  {gasFee?.medium?.max_total_fee}
+                </span>
+              </p>
+            </div>
 
-                <div className="text-white_variant mt-1">
-                  <h4 className=" text-xl font-medium">Slow</h4>
-                  <p className="">
-                    Max Priority Fee:{" "}
-                    <span className="font-medium">
-                      {gasFee?.slow?.max_priority_fee}
-                    </span>
-                  </p>
-                  <p className="">
-                    Max Total Fee:{" "}
-                    <span className="font-medium">
-                      {gasFee?.slow?.max_total_fee}
-                    </span>
-                  </p>
-                </div>
-              </div>
-            )}
+            <div className="text-white_variant mt-1">
+              <h4 className=" text-xl font-medium">Slow</h4>
+              <p className="">
+                Max Priority Fee:{" "}
+                <span className="font-medium">
+                  {gasFee?.slow?.max_priority_fee}
+                </span>
+              </p>
+              <p className="">
+                Max Total Fee:{" "}
+                <span className="font-medium">
+                  {gasFee?.slow?.max_total_fee}
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       )}
@@ -175,7 +186,7 @@ const Tracker = () => {
 
           <select
             onChange={(e) => setProtocol(e.target.value)}
-            className="bg-dark_deep outline-none border-l border-white_varaint text-white text-xl font-semibold px-3"
+            className="bg-dark_deep outline-none border-r border-white_varaint text-white text-xl font-semibold px-3"
           >
             <option value="ethereum">Ethereum</option>
             <option value="algorand">Algorand</option>
@@ -195,7 +206,7 @@ const Tracker = () => {
             type="submit"
             className="bg-dark_deep text-white text-xl px-8 rounded-br-lg rounded-tr-lg"
           >
-            <strong>Analyze</strong>
+            <strong>{loading ? "Analyzing" : "Analyze"}</strong>
           </button>
         </form>
       </div>
@@ -234,18 +245,6 @@ const Tracker = () => {
                       >
                         confirmed balance
                       </th>
-                      <th
-                        scope="col"
-                        className="md:px-3 px-1 py-5 text-left text-xs font-medium text-white_variant uppercase tracking-wider"
-                      >
-                        pending balance
-                      </th>
-                      <th
-                        scope="col"
-                        className="md:px-3 px-1 py-5 text-left text-xs font-medium text-white_variant uppercase tracking-wider whitespace-nowrap"
-                      >
-                        confirmed block
-                      </th>
                     </tr>
                   </thead>
 
@@ -275,13 +274,7 @@ const Tracker = () => {
                               {track?.currency?.symbol}
                             </td>
                             <td className="text-sm truncate whitespace-nowrap md:px-3 px-1 py-3">
-                              {track?.confirmed_balance}
-                            </td>
-                            <td className="text-sm truncate whitespace-nowrap md:px-3 px-1 py-3">
-                              {track?.pending_balance}
-                            </td>
-                            <td className="text-sm truncate whitespace-nowrap md:px-3 px-1 py-3">
-                              {track?.confirmed_block}
+                              {(track?.confirmed_balance / 1e18).toFixed(4)}
                             </td>
                           </tr>
                         );

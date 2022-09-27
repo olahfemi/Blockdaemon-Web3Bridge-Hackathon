@@ -24,3 +24,13 @@ code {
   width: 400px;
 }
 
+
+.ReactModal__Overlay, .ReactModal__Overlay--after-open {
+  background-color: rgba(33, 53, 30, 0.95) !important;
+}
+
+.ReactModal__Content, .ReactModal__Content-after-open {
+  border: 0 !important;
+  padding: 0 !important;
+  
+}

@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/Blockdaemon-Web3Bridge-Hackathon/static/css/main.c1da027f.css",
-    "main.js": "/Blockdaemon-Web3Bridge-Hackathon/static/js/main.8c934681.js",
-    "static/js/563.ab2cad7c.chunk.js": "/Blockdaemon-Web3Bridge-Hackathon/static/js/563.ab2cad7c.chunk.js",
-    "static/js/942.6bd15363.chunk.js": "/Blockdaemon-Web3Bridge-Hackathon/static/js/942.6bd15363.chunk.js",
-    "static/js/787.64d575d6.chunk.js": "/Blockdaemon-Web3Bridge-Hackathon/static/js/787.64d575d6.chunk.js",
-    "static/js/419.cf65b764.chunk.js": "/Blockdaemon-Web3Bridge-Hackathon/static/js/419.cf65b764.chunk.js",
-    "static/js/163.e71592b9.chunk.js": "/Blockdaemon-Web3Bridge-Hackathon/static/js/163.e71592b9.chunk.js",
-    "index.html": "/Blockdaemon-Web3Bridge-Hackathon/index.html",
-    "main.c1da027f.css.map": "/Blockdaemon-Web3Bridge-Hackathon/static/css/main.c1da027f.css.map",
-    "main.8c934681.js.map": "/Blockdaemon-Web3Bridge-Hackathon/static/js/main.8c934681.js.map",
-    "787.64d575d6.chunk.js.map": "/Blockdaemon-Web3Bridge-Hackathon/static/js/787.64d575d6.chunk.js.map",
-    "419.cf65b764.chunk.js.map": "/Blockdaemon-Web3Bridge-Hackathon/static/js/419.cf65b764.chunk.js.map",
-    "163.e71592b9.chunk.js.map": "/Blockdaemon-Web3Bridge-Hackathon/static/js/163.e71592b9.chunk.js.map"
+    "main.css": "/test1/static/css/main.c1da027f.css",
+    "main.js": "/test1/static/js/main.f07433fc.js",
+    "static/js/563.ab2cad7c.chunk.js": "/test1/static/js/563.ab2cad7c.chunk.js",
+    "static/js/942.6bd15363.chunk.js": "/test1/static/js/942.6bd15363.chunk.js",
+    "static/js/787.64d575d6.chunk.js": "/test1/static/js/787.64d575d6.chunk.js",
+    "static/js/419.c6a399ea.chunk.js": "/test1/static/js/419.c6a399ea.chunk.js",
+    "static/js/163.e71592b9.chunk.js": "/test1/static/js/163.e71592b9.chunk.js",
+    "index.html": "/test1/index.html",
+    "main.c1da027f.css.map": "/test1/static/css/main.c1da027f.css.map",
+    "main.f07433fc.js.map": "/test1/static/js/main.f07433fc.js.map",
+    "787.64d575d6.chunk.js.map": "/test1/static/js/787.64d575d6.chunk.js.map",
+    "419.c6a399ea.chunk.js.map": "/test1/static/js/419.c6a399ea.chunk.js.map",
+    "163.e71592b9.chunk.js.map": "/test1/static/js/163.e71592b9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c1da027f.css",
-    "static/js/main.8c934681.js"
+    "static/js/main.f07433fc.js"
   ]
 }

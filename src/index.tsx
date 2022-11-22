@@ -4,17 +4,31 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "aos/dist/aos.css";
-import { WagmiConfig, createClient, chain } from "wagmi";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+import { WagmiConfig, createClient, chain, configureChains } from "wagmi";
 import { ConnectKitProvider, getDefaultClient } from "connectkit";
+import Modal from "react-modal";
 
-const alchemyId = process.env.ALCHEMY_ID;
+Modal.setAppElement('#root');
 
-const chains = [chain.goerli];
+
+const alchemyId = process.env.REACT_APP_ALCHEMY_ID;
+
+const { chains } = configureChains(
+  [chain.goerli],
+  [
+    jsonRpcProvider({
+      rpc: (chain: any) => ({
+        http: `https://eth-goerli.g.alchemy.com/v2/${alchemyId}`,
+        webSocket: `wss://eth-goerli.g.alchemy.com/v2/${alchemyId}`,
+      }),
+    }),
+  ]
+);
 
 const client = createClient(
   getDefaultClient({
     appName: "PiggyBank",
-    alchemyId,
     chains,
   })
 );

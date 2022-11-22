@@ -301,7 +301,7 @@ const Explorer = () => {
                               colSpan={7}
                               className="font-medium whitespace-nowrap text-center px-1 md:px-3 py-3"
                             >
-                              Input a valid address in the search field above!
+                              No event available for this transaction!
                             </td>
                           </tr>
                         ) : (
